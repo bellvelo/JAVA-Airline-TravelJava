@@ -20,16 +20,16 @@ public class FlightManagerTest {
     @Before
     public void setUp() throws Exception {
         plane = new Plane(PlaneType.BOEING747);
-        flight = new Flight("FR675",FlightDetails.FR675.getDepAirport(), FlightDetails.FR675.getArrAirport(), "16:30");
+        flight = new Flight("FR675",FlightDetails.FR675.getDepAirport(), FlightDetails.FR675.getArrAirport(), "16:30", plane);
         passenger1 = new Passenger("David", 4);
         passenger2 = new Passenger("Jules", 3);
         passenger3 = new Passenger("Esmee", 1);
         passenger4 = new Passenger("Bronte", 1);
-        flight.bookSeat(passenger1);
-        flight.bookSeat(passenger2);
-        flight.bookSeat(passenger3);
-        flight.bookSeat(passenger4);
-        flightmanager = new FlightManager(flight, passenger1);
+        flight.bookSeat(passenger1, plane);
+        flight.bookSeat(passenger2, plane);
+        flight.bookSeat(passenger3, plane);
+        flight.bookSeat(passenger4, plane);
+        flightmanager = new FlightManager();
     }
 
     @Test
@@ -38,28 +38,28 @@ public class FlightManagerTest {
     }
 
     @Test
-    public void canGetPassengerSpecififiedBagWeight() {
-        assertEquals(10, flightmanager.getPassengerSpecifiedBagWeight());
+    public void canGetPassengerSpecifiedBagWeight() {
+        assertEquals(10, flightmanager.getPassengerSpecifiedBagWeight(plane));
     }
 
     @Test
     public void canGetPassengerBaggageWeight() {
-        assertEquals(40, flightmanager.getPassengerBags(passenger1));
+        assertEquals(40, flightmanager.getPassengerBags(passenger1, plane));
     }
 
     @Test
     public void canGetTotalBaggageWeight() {
-        assertEquals(90, flightmanager.getTotalBaggageWeight());
+        assertEquals(90, flightmanager.getTotalBaggageWeight(flight, plane));
     }
 
     @Test
     public void canGetAvailableBaggeWeightNumber() {
-        assertEquals(500, flightmanager.getAvailableBaggeWeightNumber());
+        assertEquals(500, flightmanager.getAvailableBaggageWeightNumber(plane));
     }
 
     @Test
     public void canGetRemaingBaggageWeight() {
-        assertEquals(410, flightmanager.getRemainingBaggageWeight());
+        assertEquals(410, flightmanager.getRemainingBaggageWeight(flight, plane));
     }
 }
 

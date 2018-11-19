@@ -6,26 +6,16 @@ public class Plane {
         this.planetype = planetype;
     }
 
-//    public Plane( String planeModel, int capacity, int weight) {
-//        this.planeModel = planeModel;
-//        this.capacity = capacity;
-//        this.weight = weight;
-//    }
 
     public PlaneType getPlanetype() {
         return planetype;
     }
 
+    public int getCapacity() {
+        return this.planetype.getCapacity();
+    }
 
-//    public String getPlaneModel() {
-//        return planeModel;
-//    }
-//
-//    public int getCapacity() {
-//        return capacity;
-//    }
-//
-//    public int getWeight() {
-//        return weight;
-//    }
+    public int getWeight() {
+        return this.planetype.getWeight();
+    }
 }

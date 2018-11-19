@@ -11,7 +11,7 @@ public class Flight {
     private Passenger passenger;
     private FlightManager flightmanager;
 
-    public Flight(String flightNo, String depAirport, String arrAirport, String depTime) {
+    public Flight(String flightNo, String depAirport, String arrAirport, String depTime, Plane plane) {
         this.manifest = new ArrayList<Passenger>();
         this.plane = plane;
         this.flightNo = flightNo;
@@ -54,8 +54,8 @@ public class Flight {
         return this.manifest.size();
     }
 
-    public void bookSeat(Passenger passenger) {
-        if (getPassengerCount() < PlaneType.BOEING747.getCapacity()){
+    public void bookSeat(Passenger passenger, Plane plane) {
+        if (getPassengerCount() < plane.getCapacity()){
             this.manifest.add(passenger);
         } else {
             this.manifest.size();
